@@ -11,13 +11,24 @@ public class Game {
     }
 
     public int score() {
+
         int score = 0;
         int currentFrame = 0;
+
         for (int i = 0; i < 10; i++) {
-            score += rolls[currentFrame] + rolls[currentFrame + 1];
-            currentFrame += 2;
+            if (isSpare(currentFrame)) {
+                score += 10 + rolls[currentFrame + 2];
+                currentFrame += 2;
+            } else {
+                score += rolls[currentFrame] + rolls[currentFrame + 1];
+                currentFrame += 2;
+            }
         }
         return score;
+    }
+
+    private boolean isSpare(int currentFrame) {
+        return rolls[currentFrame] + rolls[currentFrame + 1] == 10;
     }
 
     public int getRoll() {

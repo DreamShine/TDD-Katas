@@ -23,29 +23,29 @@ public class GameTest {
 
     @Test
     public void TestThrowTwentyGutterBallsScoresZero() throws Exception {
-        game.roll(0);
+        roll(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         assertThat(game.score(), is(0));
     }
 
     @Test
     public void TestThrowTwentyRollsOfOneScoresTwenty() throws Exception {
 
-        for (int i = 0; i < 20; i++) {
-            game.roll(1);
-        }
+        roll(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
         assertThat(game.score(), is(20));
     }
 
     @Test
-    public void TestThrowSpareThenFourScoresForteen() {
-        game.roll(4);
-        game.roll(6);
-        game.roll(4);
-        //--Roll the rest as zeros
-        for (int i = 0; i < 17; i++) {
-            game.roll(0);
-        }
-        assertThat(game.score(), is(14));
+    public void TestThrowSpareThenFourScoresEighteen() {
+        //--Roll the rest as zeros. Spare calculated as 10 + next roll for a single frame.
+        roll(4, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+        assertThat(game.score(), is(18));
     }
-    
+
+    private void roll(int... rolls) {
+        for (int pinsDowned : rolls) {
+            game.roll(pinsDowned);
+        }
+    }
+
 }
