@@ -23,29 +23,29 @@ public class GameTest {
 
     @Test
     public void TestThrowTwentyGutterBallsScoresZero() throws Exception {
-        roll(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        game.roll(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         assertThat(game.score(), is(0));
     }
 
     @Test
     public void TestThrowTwentyRollsOfOneScoresTwenty() throws Exception {
-
-        roll(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+        game.roll(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
         assertThat(game.score(), is(20));
     }
 
     @Test
     public void TestThrowSpareThenFourScoresEighteen() {
         //--Roll the rest as zeros. Spare calculated as 10 + next roll for a single frame.
-        roll(4, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        game.roll(4, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
         assertThat(game.score(), is(18));
     }
 
-    private void roll(int... rolls) {
-        for (int pinsDowned : rolls) {
-            game.roll(pinsDowned);
-        }
+    @Test
+    public void TestScoreStrikeThenTwoFours() {
+        //Strike - 10 + 4 + 4 , 4 + 4, 0  + 0.... (Next frame)
+        game.roll(10, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        assertThat(game.score(), is(24));
     }
 
 }
