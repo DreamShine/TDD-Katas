@@ -48,4 +48,11 @@ public class GameTest {
         assertThat(game.score(), is(26));
     }
 
+    @Test
+    public void TestScoreThePerfectGame() {
+        //Perfect game is 300 - 2 extra frames after rolling a strike on the final frame.
+        game.roll(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+        assertThat(game.score(), is(300));
+    }
+
 }
