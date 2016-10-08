@@ -6,6 +6,12 @@ public class Game {
     private int counter = 0;
     private int[] rolls = new int[21];
 
+    public void roll(int... rolls) {
+        for (int pinsDowned : rolls) {
+            roll(pinsDowned);
+        }
+    }
+
     public void roll(int pinsKnockedDown) {
         rolls[counter++] = pinsKnockedDown;
     }
@@ -16,7 +22,10 @@ public class Game {
         int currentFrame = 0;
 
         for (int i = 0; i < 10; i++) {
-            if (isSpare(currentFrame)) {
+            if (isStrike(currentFrame)) {
+                score += 10 + rolls[currentFrame + 1] + rolls[currentFrame + 2];
+                currentFrame++;
+            } else if (isSpare(currentFrame)) {
                 score += 10 + rolls[currentFrame + 2];
                 currentFrame += 2;
             } else {
@@ -25,6 +34,10 @@ public class Game {
             }
         }
         return score;
+    }
+
+    private boolean isStrike(int currentFrame) {
+        return rolls[currentFrame] == 10;
     }
 
     private boolean isSpare(int currentFrame) {

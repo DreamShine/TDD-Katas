@@ -43,9 +43,9 @@ public class GameTest {
 
     @Test
     public void TestScoreStrikeThenTwoFours() {
-        //Strike - 10 + 4 + 4 , 4 + 4, 0  + 0.... (Next frame)
+        //Strike - 10 + 4 + 4 , 4 + 4, 0  + 0.... = 26(Next frame)
         game.roll(10, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        assertThat(game.score(), is(24));
+        assertThat(game.score(), is(26));
     }
 
 }
