@@ -4,11 +4,14 @@
 public class Game {
     private int score;
 
-    public int roll(int pinsKnockedDown) {
-        return 0;
+    public void roll(int timesRolled, int pinsKnockedDown) {
+        for (int i = 0; i < timesRolled; i++) {
+            score += pinsKnockedDown;
+        }
     }
 
-    public Integer getScore() {
-        return 0;
+    public int getScore() {
+        return score;
     }
+
 }
