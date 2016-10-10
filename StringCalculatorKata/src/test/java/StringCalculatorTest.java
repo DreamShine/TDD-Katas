@@ -24,14 +24,42 @@ public class StringCalculatorTest {
         assertThat(result, is(0));
     }
 
-    private int addStringNumbers(String s) {
-        return stringCalculator.add(s);
+    private void addStringNumbers(String... s) {
+        for (String numberString : s) {
+            stringCalculator.add(numberString);
+        }
+        result = stringCalculator.getResult();
     }
 
     @Test
     public void testStringOfOneReturnsOne() {
         addStringNumbers("1");
         assertThat(result, is(1));
+    }
+
+    @Test
+    public void testStringTwoZerosReturnsZero() {
+        addStringNumbers("", "");
+        assertThat(result, is(0));
+    }
+
+    @Test
+    public void testStringZeroTwoThreeReturnsFive() {
+        addStringNumbers("", "2", "3");
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void testStringZeroAndOneTwoThreeReturnsSix() {
+        addStringNumbers(",1", "2", "3");
+        assertThat(result, is(6));
+    }
+
+    //Have issues with my backslash so ammending the delimiter.
+    @Test
+    public void testNewLineDelimiterAndEmptyStringReturnsZero() {
+        addStringNumbers(".n0");
+        assertThat(result, is(0));
     }
 
 }
