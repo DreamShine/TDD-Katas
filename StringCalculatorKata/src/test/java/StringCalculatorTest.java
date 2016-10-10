@@ -85,4 +85,34 @@ public class StringCalculatorTest {
         addStringNumbers("//;");
         assertThat(result, is(0));
     }
+
+    @Test
+    public void testCustomDelimiterNotSpecifiedDefaultToUsingCommaReturnsZero() {
+        addStringNumbers("//");
+        assertThat(result, is(0));
+    }
+
+    @Test
+    public void testCustomDelimiterWithTwoDelimiterThreeReturnsFive() {
+        addStringNumbers("//<2<3");
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void testCustomDelimiterWithNewLinesReturnsFive() {
+        addStringNumbers("//<2.n3");
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void testCustomDelimiterWithMultipleStringsAndNewLinesReturnsFive() {
+        addStringNumbers("//<2.n3", "//<");
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void testCustomDelimiterWithThreeDelimiterArguementsThreeFourFiveReturnsTwelve() {
+        addStringNumbers("//<3<4", "5");
+        assertThat(result, is(12));
+    }
 }
