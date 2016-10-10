@@ -10,7 +10,7 @@ public class StringCalculator {
 
     public void add(String s) throws NumberFormatException {
 
-        s = s.replaceAll(".n", "");
+        s = s.replaceAll(".n", ",");
         stringList = Arrays.asList(s.split(","));
 
         for (String stringNumber : stringList) {

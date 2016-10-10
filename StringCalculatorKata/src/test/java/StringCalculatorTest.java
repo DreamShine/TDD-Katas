@@ -62,4 +62,27 @@ public class StringCalculatorTest {
         assertThat(result, is(0));
     }
 
+    @Test
+    public void testNewLineDelimiterAndCommasSeperatedSumForFivePlusFourReturnsNine() {
+        addStringNumbers(".n5,4");
+        assertThat(result, is(9));
+    }
+
+    @Test
+    public void testNewLineDelimiterAndCommasWithMultipleArguementsForFivePlusFiveReturnsTen() {
+        addStringNumbers(".n5", ",5");
+        assertThat(result, is(10));
+    }
+
+    @Test
+    public void testNewLineDelimiterSeperatedNumbersTwoThreeCommaFourReturnsNine() {
+        addStringNumbers("2.n3,4");
+        assertThat(result, is(9));
+    }
+
+    @Test
+    public void testCustomDelimiterWithEmptyStringReturnsZero() {
+        addStringNumbers("//;");
+        assertThat(result, is(0));
+    }
 }
